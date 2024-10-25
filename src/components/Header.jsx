@@ -1,10 +1,20 @@
+import { useState } from "react";
 import Moon from "../assets/icons/moon.svg";
 import Logo from "../assets/logo.svg";
 import Ring from "../assets/ring.svg";
 import ShoppingCard from "../assets/shopping-cart.svg";
+import CardDetails from "./CardDetails";
 export default function Header() {
+  const [showCard, setShowCard] = useState(false);
+  const handleCardShow = () => {
+    setShowCard(!showCard);
+  };
+
   return (
     <header>
+      {showCard && <CardDetails 
+      onClose={() => setShowCard(false)}
+      />}
       <nav className="container flex items-center justify-between space-x-10 py-6">
         <a href="index.html">
           <img src={Logo} width="139" height="26" alt="logo" />
@@ -31,6 +41,7 @@ export default function Header() {
             <a
               className="bg-primary/20 dark:bg-primary/[7%] rounded-lg backdrop-blur-[2px] p-1 inline-block"
               href="#"
+              onClick={handleCardShow}
             >
               <img src={ShoppingCard} width="24" height="24" alt="" />
             </a>
